@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Register</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.pseudo) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de passe',
+            help: '6 caractères minimum'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+{# si on met pas dans le fichier twig tous les champs qui sont declarés dans le controlleur FormType (dans la methode createForm), Symfony va les mettre automatiquement après le button submit, sauf si on les precise avant le button #}
+        <button type="submit" class="btn btn-secondary">Enregistrer</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

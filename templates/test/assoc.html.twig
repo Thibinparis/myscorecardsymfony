@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container">
+{# <p> je m'appelle {{ personne['prenom']}} {{personne['nom']}}</p> #}
+<p> je m'appelle {{personne.prenom~' '~personne.nom}} et j'ai {{personne.age}}</p>
+</div>
+{% endblock %}

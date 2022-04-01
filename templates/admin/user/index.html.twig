@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateur{% endblock %}
+    {% block titreH1 %}
+        {{block ('title')}}
+    {% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Pseudo</th>
+                <th>Email</th>              
+                <th>Roles</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.pseudo }}</td>
+                <td>{{ user.player? user.player.email: "" }}</td>
+
+                <td>
+                    {# {{ user.roles ? user.roles|json_encode : '' }}</td> #}
+                {% for role in user.roles %}    
+                    {# roles est un array qui peut contenir plusieurs roles  #}
+                    {% if role=='ROLE_ADMIN' %} Administrateur 
+                        {% elseif role=='ROLE_PLAYER' %} Joueur 
+                        {% elseif role=='ROLE_REFEREE' %} Arbitre 
+                        {% else %} Utilisateur 
+                    {% endif %}
+                    {# il n'y a pas de Switch dans Symfony comme en PhP #}
+                    {# qund on fait une boucle on a une variable qui s'appelle LOOP qui est un Objet avec plusieurs proprietés  #}
+                    {{ not loop.last ? ',' : ''}} 
+                {% endfor %} 
+                </td>
+                <td>
+                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_user_new') }}" class="btn btn-secondary">Ajouter un utilisateur</a>
+{% endblock %}

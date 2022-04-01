@@ -1,0 +1,77 @@
+https://twig.symfony.com/doc/3.x/
+
+Ajouter une route (dans le controleur Test)
+url "/test/salut"
+methode "salut"
+
+dans un nouvel affichage (donc un nouveau fichier twig)
+	Afficher "Salut $prenom" (changer le contenu du block body, ne pas changer le contenu des autres blocks)
+    
+    
+/////////////// fichier templates/home/index.html.twig
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h2>Page d'accueil</h2>
+        
+{% endblock %}
+
+{% block piedpage %}footer de la page d'accueil{% endblock %}
+
+
+///////////// fichier templates/base.html.twig
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {# {{ encore_entry_link_tags('app') }} #}
+        {% endblock %}
+
+        {% block javascripts %}
+            {# {{ encore_entry_script_tags('app') }} #}
+        {% endblock %}
+    </head>
+    <body>
+        <h1>My Scoreboard</h1>
+        {% block body %}{% endblock %}
+
+        <footer>
+            {% block piedpage %}
+                <p>ceci est le footer</p>
+            {% endblock %}
+        </footer>
+    </body>
+</html>
+
+AFFICHER TOUS LES JEUX sur la page d'accueil. Les jeux doivent 
+être affiché avec des div classe card
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nom du jeu</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">
+    	Entre .. et .. joueurs
+    </p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+
+
+1. Le titre H1 de la page doit être « Liste des parties »
+2. La date doit être affichée avec le format français
+3. Ajouter une ligne à la table principale pour afficher le vainqueur de la partie
+
+
+EXO pour demain : 
+1. Dans la liste des Users : ajoutez une colonne E-mail et affichez les e-mails du player qui est lié
+2. Quand un admin ajoute un USER, il faut que cela crée automatiquement un PLAYER  (comme pour l'inscription) 
+	Dans le formulaire, ajouteur un champ email (comme pour l'inscription)
+

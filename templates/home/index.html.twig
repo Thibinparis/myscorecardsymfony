@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de jeu{% endblock %}
+
+
+ 
+    {% block body %}
+
+    <div class="card-columns">
+        {% for jeu in games %}
+            {{ include("game/_card.html.twig") }}
+        {% else %}
+            <mark>Aucun résultat trouvé</mark>
+        {% endfor %}
+<h3>Bravo les gagnants : </h3>
+        <ul> 
+        {% for winner in winners %}
+                <li> {{ winner.nickname ~ " (" ~ winner.email ~")" }}</li>
+        {% else %}
+        </ul>
+            <mark>Aucun gagnant jusqu'ici</mark>
+        {% endfor %}
+
+    </div>
+    {% endblock %}

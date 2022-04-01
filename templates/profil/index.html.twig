@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil utilisateur {% endblock%}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h3>Mes Informations</h3>
+
+    <ul class="list-group">
+        <li class="list-group-item">Identifiant :  {{app.user.id}}</li>
+        <li class="list-group-item">Pseudo : {{app.user.pseudo}}</li>
+        <li class="list-group-item">mdp : *** </li>
+        <li class="list-group-item">Authorisations :
+        {% for role in app.user.roles %}    
+            {# roles est un array qui peut contenir plusieurs roles  #}
+            {% if role=='ROLE_ADMIN' %} Administrateur 
+            {% elseif role=='ROLE_PLAYER' %} Joueur 
+            {% elseif role=='ROLE_REFEREE' %} Arbitre 
+            {% else %} Utilisateur 
+            {% endif %}
+            {# il n'y a pas de Switch dans Symfony comme en PhP #}
+            {# qund on fait une boucle on a une variable qui s'appelle LOOP qui est un Objet avec plusieurs proprietés  #}
+        {{  not loop.last ? ',' : ''}} 
+        {% endfor %} 
+        </li>
+    </ul>
+</div>
+{% endblock %}

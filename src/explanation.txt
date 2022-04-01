@@ -1,0 +1,63 @@
+symfony server:start -d
+symfony server:stop
+
+php -S localhost:8000 -t public
+
+php bin/console 
+symfony console make:controller
+
+symfony console doctrine:database:create
+
+// Permet de créer une classe Entity qui représente une table de la bdd
+symfony console make:entity
+
+// Compare la bdd et le dossier Entity : crée les requêtes SQL qui mettront à jour la bdd selon les entités
+symfony console make:migration
+
+// Met à jour la bdd en exécutant les migrations
+
+symfony console doctrine:migrations:migrate
+
+// Créer une classe pour gérer un formulaire basé sur une classe entité
+symfony console make:form
+
+// classe pour générer un bouton Submit (à utiliser dans une classe Form)
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+
+// dans la console, pour afficher la liste des routes
+symfony console debug:route --show-controllers
+
+composant SECURITY
+
+// pour créer l'entité qui va servir à conserver les informations des utilisateurs
+// pour la connexion et l'inscription
+symfony console make:user
+	symfony console make:migration
+    symfony console doctrine:migrations:migrate
+symfony console make:auth
+
+
+make:user   // pour créer l'entité qui conservera les infos des utilisateurs
+make:auth   // pour créer une authentification (formulaire de connexion)
+make:registration-form  // pour créer un formulaire d'inscription
+
+
+composer require encore 
+----------------------------
+
+symfony/webpack-encore-bundle
+                
+yarn install
+yarn add node-sass
+yarn add sass-loader
+yarn add @fortawesome/fontawesome-free
+yarn add bootstrap@4.6
+yarn add jquery
+yarn add popper.js
+yarn add file-loader
+
+
+// dans le ficher assets/styles/app.scss
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "~bootstrap/scss/bootstrap";
